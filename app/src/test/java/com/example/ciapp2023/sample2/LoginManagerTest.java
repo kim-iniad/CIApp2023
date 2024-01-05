@@ -13,19 +13,24 @@ public class LoginManagerTest {
     @Before
     public void setUp() throws ValidateFailedException{
         loginManager = new LoginManager();
+        loginManager.register("Testuser1", "password");
+    }
+
+    @Test(expected = ValidateFailedException.class)
+    public void testSetupFailed() throws ValidateFailedException{
         loginManager.register("testuser1", "password");
     }
 
     @Test
     public void testLoginSuccess() throws LoginFailedException {
-        User user = loginManager.login("testuser1", "password");
-        assertThat(user.getUsername(), is("testuser1"));
+        User user = loginManager.login("Testuser1", "password");
+        assertThat(user.getUsername(), is("Testuser1"));
         assertThat(user.getPassword(), is("password"));
     }
 
     @Test(expected = LoginFailedException.class)
     public void testLoginWrongPassword() throws LoginFailedException {
-        User user = loginManager.login("testuser1", "1234");
+        User user = loginManager.login("Testuser1", "1234");
     }
 
     @Test(expected = LoginFailedException.class)
