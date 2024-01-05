@@ -9,19 +9,19 @@ public class LoginManager {
         this.users = new HashMap<>();
     }
 
-    public void register(String username, String password) throws ValidateFailedException {
+    public void register(String username, String password) throws com.example.ciapp2023.sample2.ValidateFailedException {
         if (!isUsernameValid(username)) {
-            throw new ValidateFailedException("Username input is invalid");
+            throw new com.example.ciapp2023.sample2.ValidateFailedException("Username input is invalid");
         }
         if (!isPasswordValid(password)) {
-            throw new ValidateFailedException("Password input is invalid");
+            throw new com.example.ciapp2023.sample2.ValidateFailedException("Password input is invalid");
         }
 
-        users.put(username, new User(username, password));
+        users.put(username, new com.example.ciapp2023.sample2.User(username, password));
     }
 
     private boolean isUsernameValid(String username) {
-        return username.matches("^[a-zA-Z0-9]{4,}$");
+        return username.matches("^(?=.*[A-Z])[a-zA-Z0-9]{4,}$");
     }
 
     private boolean isPasswordValid(String password) {
